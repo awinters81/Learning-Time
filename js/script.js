@@ -1,5 +1,7 @@
 // I need to begin creating elements that will pull from elements in my HTML document. So..
 
+var newQuestion = 0;
+
 //HTML Elements
 
 var startingPhase = document.getElementById('starting');
@@ -27,6 +29,7 @@ var questions = [
 ];
 
 
+
 // Function to start quiz
 
 function beginQuiz(){
@@ -37,33 +40,49 @@ function beginQuiz(){
 // I would also need call a function to start the questions, which I set up earlier.
 
 startingPhase.setAttribute('class', 'start-hide');
-inquiryPhase.removeAttribute('class', 'inquiry-hide');
+inquiryPhase.removeAttribute('class', 'hidden');
 beginInquiry();
-
 }
 
 //I'm probably going to need a function to pull and loop through the questions...
 
 function beginInquiry(){
 
-//Creating variable to pull from the array, and if that doesn't work, create another function?
+//So this variable isn't working properly... it "works", but nothing is rendering properly...
 
-var current = [questions];
+var current = questions[newQuestion];
 
 inquiryTitle.textContent = current.question;
+
+// if I need the choices to change... loop through each array?
+// so..
+
+for (var i = 0; i < current.options; i++)
 
 //... so buttons for the choices?
 
 var selectChoice = document.createElement('button');
+var answers = current.options[i];
 
-selectChoice.setAttribute('id', 'select');
-selectChoice.setAttribute('value', options);
+selectChoice.setAttribute('class', 'select');
+selectChoice.setAttribute('value', select);
+
+selectChoice.textContent = i + 1 + '.' + answers;
+
+option.appendChild(selectChoice);
 }
 
+//Something needs to happen when I click on an answer...
 
-//Earlier, I did say that I needed a function to get my questions, so...
-//I don't want all the questions to be pulled at the same time, so should I
-//create a variable for just the current question?
+function clickChoice(event) {
+// For when the answer is picked...
+// So when I had this variable outside this function, it couldn't be read properly...
+var pushButton = event;
+    if (pushButton.matches('select')) {
+        return;
+    }
+
+}
 
 //function questionPull(){
 
